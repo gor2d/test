@@ -1,0 +1,30 @@
+version: "3"
+services:
+  tomcat1:
+    build: tomcat9
+    #env_file:
+    #  .env
+    container_name: builder
+    volumes:
+      - type: volume
+        sorce: war
+        target: /boxfuse-sample-java-war-hello/
+      
+  tomcat2:
+    build: prod
+    ports:
+      - "5555:8080"
+    container_name: prod
+    #env_file:
+    #  .env
+    volumes:
+      - type: volume
+        source: war
+        target: /usr/local/tomcat/webapps/
+    depends_on:
+      - "tomcat1"
+   volumes:
+     war:
+    
+ 
+              

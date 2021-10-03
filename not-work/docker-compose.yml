@@ -1,0 +1,29 @@
+version: "3"
+services:
+  tomcat1:
+    build: tomcat9
+    container_name: builder
+    volumes:
+      - type: volume
+        source: war
+        target: /boxfuse-sample-java-war-hello/
+
+
+  tomcat2:
+    build: prod
+    container_name: prod
+    volumes:
+      - type: volume
+        source: war
+        target: /usr/local/tomcat/webapps/boxfuse-sample-java-war-hello/
+    ports:
+      - "5555:8080"
+    depends_on:
+      - tomcat1
+
+
+volumes:
+  war:
+    
+ 
+              
