@@ -6,7 +6,7 @@ services:
       .env
     container_name: builder
     volumes:
-      - /opt/share/:/opt/
+      - ./:/opt/
   #  volumes:
   #    - D:\\учеба\\DevOps\\git\\test\\share/:/opt/
  #   command: ["/bin/sh", "-c", "cp /usr/local/tomcat/boxfuse-sample-java-war-hello/target /tmp"]  
@@ -23,8 +23,8 @@ services:
     container_name: prod
     env_file:
       .env
-  #  volumes:
-  #    - :/opt/
+    volumes:
+      - ./:/opt/
     depends_on:
       - "tomcat1"
     #command: ["bash", "cp /tmp/hello-1.0.war /usr/local/tomcat/webapps/"]  
